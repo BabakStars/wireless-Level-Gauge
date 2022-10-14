@@ -1,0 +1,233 @@
+const char index_page[] PROGMEM = R"=====(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level gauge</title>
+</head>
+<body style="background-color:rgb(142, 142, 142)">
+    <h2 style="color:white;">Tank1</h2>
+    <table style="border: 5px rgb(255, 255, 255) solid; height: 350px; width: 200px;">
+        <tr>
+            <td id="level10">
+                
+            </td>
+        </tr>
+        <tr>
+            <td id="level9">
+                
+            </td>
+        </tr>
+        <tr>
+            <td id="level8">
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td id="level7">
+                
+            </td>
+        </tr>
+        <tr>
+            <td id="level6">
+                
+            </td>
+        </tr>
+        <tr>
+            <td id="level5">
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td id="level4">
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td id="level3">
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td id="level2">
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td id="level1">
+                
+            </td>
+        </tr>
+
+    </table>
+    <br>
+    <h2 id="h2t" style="color:rgb(86, 253, 86);">...</h2>
+    Time: <input input id="txt1" type="text" value="10" style="text-align: center; width: 80px; height: 20px;" />
+    <br><br>
+    Set point: <input id="txt2" type="text" value="100" style="text-align: center; width: 80px; height: 20px;" /> Cm
+</body>
+<script>
+    var time = document.getElementById('txt1').value;
+    var T = setInterval(function(){
+      time--;
+      document.getElementById('txt1').value = time;  
+      if(time <= 0)
+      {
+        time = 11;
+        var req = new XMLHttpRequest();
+        req.open("GET", "http://192.168.1.150/SET?password=1234", true);
+                    req.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status ==200)
+                    {
+                        var Dis = this.responseText; 
+                        var setpoint = document.getElementById('txt2').value; 
+                        var P = ((setpoint - Dis)/setpoint)*100;
+                        document.getElementById('h2t').innerHTML = P; 
+                                if(P>=0 && P<=10)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level3').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level4').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level5').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level6').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';
+                                }
+                                if(P>=10 && P<=20)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level4').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level5').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level6').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';
+                                }
+                                if(P>=20 && P<=30)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level5').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level6').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=30 && P<=40)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level6').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=40 && P<=50)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=50 && P<=60)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level7').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=60 && P<=70)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level7').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level8').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=70 && P<=80)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level7').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level8').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level9').style.backgroundColor = '#ffffff';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>=80 && P<=90)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level7').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level8').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level9').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level10').style.backgroundColor = '#ffffff';  
+                                }
+                                if(P>90)
+                                {
+                                    document.getElementById('level1').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level2').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level3').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level4').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level5').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level6').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level7').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level8').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level9').style.backgroundColor = '#00ff00';
+                                    document.getElementById('level10').style.backgroundColor = '#00ff00';  
+                                }
+                    }
+                };
+                req.send();
+                req.close();
+                return;
+      }
+    },1000);
+
+</script>
+</html>
+)=====";
